@@ -1,0 +1,58 @@
+{
+  "name": "notebook",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JuliaChudak/notebook.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JuliaChudak/notebook/issues"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "eslintConfig": {
+    "extends": [
+      "airbnb-base",
+      "prettier"
+    ],
+    "settings": {
+      "import/extensions": [
+        "error",
+        "always",
+        {
+          "js": "never",
+          "jsx": "never",
+          "mjs": "never"
+        }
+      ],
+      "import/resolver": {
+        "node": {
+          "extensions": [ ".js", ".mjs" ]
+        }
+      }
+    },
+    "env": {
+      "node": true
+    }
+  },
+  "homepage": "https://github.com/JuliaChudak/notebook#readme",
+  "devDependencies": {
+    "eslint": "^6.1.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-prettier": "^6.5.0",
+    "eslint-plugin-import": "^2.18.2",
+    "prettier": "^1.18.2"
+  },
+  "dependencies": {
+    "@std/esm": "^0.26.0"
+  }
+}
