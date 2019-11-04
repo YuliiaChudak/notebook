@@ -10,15 +10,27 @@ import db from '../db';
 async function seedDB() {
   await db('person').insert([
     {
-      'id': 1,
       'first_name': 'Yuliia',
       'last_name': 'Chudak',
       'patronymic': 'Valentinivna',
-      'birthday': '1993-05-13',
+      'birthday': '1993-05-13T00:00:00.000Z',
       'occupation': 'UI',
       'is_studying': false,
-      'created_at': '1993-05-13',
-      'updated_at': '1993-05-13',
+      'created_at': '2019-11-04T19:51:57.671Z',
+      'updated_at': '2019-11-04T19:51:57.671Z',
+      'role_id': 2,
+    },
+  ]);
+
+  await db('role').insert([
+    {
+      'name': 'Relatives',
+    },
+    {
+      'name': 'Friends',
+    },
+    {
+      'name': 'Colleagues',
     },
   ]);
 
