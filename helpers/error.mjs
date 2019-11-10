@@ -1,2 +1,0 @@
-class Validationerror extends Error {};
-
