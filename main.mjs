@@ -5,6 +5,7 @@ import bodyParser from 'koa-bodyparser';
 
 import config from './config';
 import NotesRouter from './routes/notes';
+import PhonesRouter from "./routes/phones";
 import RolesRouter from "./routes/roles";
 import SMSRouter from "./routes/sms";
 
@@ -22,6 +23,7 @@ app.use(async (ctx, next) => {
 
 appRouter.use('/api', NotesRouter.routes(), NotesRouter.allowedMethods());
 appRouter.use('/api', RolesRouter.routes(), RolesRouter.allowedMethods());
+appRouter.use('/api', PhonesRouter.routes(), PhonesRouter.allowedMethods());
 appRouter.use('/sms', SMSRouter.routes(), SMSRouter.allowedMethods());
 
 app.use(cors());

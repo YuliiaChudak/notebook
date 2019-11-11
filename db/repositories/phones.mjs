@@ -6,3 +6,8 @@ export const getPhoneById = (id) => {
         .select()
         .first();
 };
+
+export const getPersonPhones = () => {
+    return db('phone')
+      .select();
+};
