@@ -10,8 +10,7 @@ const personSchema = Joi.object({
     .required(),
 
   patronymic: Joi.string()
-    .alphanum()
-    .required(),
+    .alphanum(),
 
   birthday: Joi.string()
     .required(),

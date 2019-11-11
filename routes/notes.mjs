@@ -34,6 +34,7 @@ NotesRouter.put('/notes/:id', async ctx => {
   const { id } = ctx.params;
   const params = ctx.request.body;
 
+  console.log(id, params)
   ctx.body = await updateNote(id, params);
 });
 
