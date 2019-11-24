@@ -1,21 +1,18 @@
 import Router from 'koa-router';
 
-import { createNote, deleteNote, getNotes, updateNote } from '../db/repositories/notes';
+import {
+  createNote,
+  deleteNote,
+  getNoteByPersonId,
+  updateNote
+} from '../db/repositories/notes';
 
 const NotesRouter = new Router();
 
-NotesRouter.get('/notes', async ctx => {
-  const { sort_by: sortBy = null, order = 'asc', ...params } = ctx.request.query;
-  let sorting = null;
+NotesRouter.get('/notes/:id', async ctx => {
+  const { id } = ctx.params;
 
-  if (sortBy) {
-    sorting = {
-      sortBy,
-      order,
-    }
-  }
-
-  ctx.body = await getNotes(params, sorting);
+  ctx.body = await getNoteByPersonId(id);
 });
 
 NotesRouter.post('/notes', async ctx => {
@@ -34,7 +31,6 @@ NotesRouter.put('/notes/:id', async ctx => {
   const { id } = ctx.params;
   const params = ctx.request.body;
 
-  console.log(id, params)
   ctx.body = await updateNote(id, params);
 });
 

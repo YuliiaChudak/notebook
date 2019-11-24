@@ -11,7 +11,7 @@ SMSRouter.post('/send', async ctx => {
     const receiver = await getPhoneById(id);
 
     if (!receiver) {
-        throw new NotFound('Phone number');
+        throw new NotFound('Receiver');
     }
 
     await twilio.messages.create({
