@@ -21,9 +21,8 @@ const personSchema = Joi.object({
 
   is_deleted: Joi.boolean(),
 
-  is_studying: Joi.boolean()
-    .required(),
-
+  is_studying: Joi.boolean(),
+  
   role_id: Joi.number()
     .integer()
     .required(),

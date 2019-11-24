@@ -1,12 +1,5 @@
 import db from '../db';
 
-// Table: role | Fields: ID, NAME: (string)
-// Table: person | Fields: ID, FIRST NAME, LAST NAME, BIRTHDAY, OCCUPATION, IS_STUDying
-// Table: address | Fields: ID, country, city, street, apartment
-// Table: phone | Fields: ID, phone
-// Table: connections | FIELDS
-
-
 async function seedDB() {
   // await db('person').insert([
   //   {
@@ -22,26 +15,26 @@ async function seedDB() {
   //   },
   // ]);
   //
-  // await db('role').insert([
-  //   {
-  //     'name': 'Relatives',
-  //   },
-  //   {
-  //     'name': 'Friends',
-  //   },
-  //   {
-  //     'name': 'Colleagues',
-  //   },
-  // ]);
-
-  await db('location').insert([
+  await db('role').insert([
     {
-      'country': 'Ukraine',
-      'city': 'Kharkiv',
-      'address':'23 Lane, 67',
-      'person_id': 1,
-    }
+      'name': 'Relatives',
+    },
+    {
+      'name': 'Friends',
+    },
+    {
+      'name': 'Colleagues',
+    },
   ]);
+
+  // await db('location').insert([
+  //   {
+  //     'country': 'Ukraine',
+  //     'city': 'Kharkiv',
+  //     'address':'23 Lane, 67',
+  //     'person_id': 1,
+  //   }
+  // ]);
 
 
   await db.destroy();

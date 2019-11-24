@@ -7,6 +7,8 @@ import config from './config';
 import NotesRouter from './routes/notes';
 import PhonesRouter from "./routes/phones";
 import RolesRouter from "./routes/roles";
+import LocationsRouter from "./routes/locations";
+import PersonsRouter from "./routes/persons";
 import SMSRouter from "./routes/sms";
 
 const app = new Koa();
@@ -24,6 +26,8 @@ app.use(async (ctx, next) => {
 appRouter.use('/api', NotesRouter.routes(), NotesRouter.allowedMethods());
 appRouter.use('/api', RolesRouter.routes(), RolesRouter.allowedMethods());
 appRouter.use('/api', PhonesRouter.routes(), PhonesRouter.allowedMethods());
+appRouter.use('/api', LocationsRouter.routes(), LocationsRouter.allowedMethods());
+appRouter.use('/api', PersonsRouter.routes(), PersonsRouter.allowedMethods());
 appRouter.use('/sms', SMSRouter.routes(), SMSRouter.allowedMethods());
 
 app.use(cors());

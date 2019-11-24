@@ -8,7 +8,7 @@ async function initDB() {
     t.string('patronymic');
     t.date('birthday').notNullable();
     t.string('occupation').notNullable();
-    t.boolean('is_studying').notNullable();
+    t.boolean('is_studying').defaultTo(false);
     t.date('created_at').notNullable();
     t.date('updated_at').notNullable();
     t.boolean('is_deleted').defaultTo(false);
