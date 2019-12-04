@@ -10,6 +10,7 @@ import RolesRouter from "./routes/roles";
 import LocationsRouter from "./routes/locations";
 import PersonsRouter from "./routes/persons";
 import SMSRouter from "./routes/sms";
+import HealthRouter from "./routes/health";
 
 const app = new Koa();
 const appRouter = new Router();
@@ -29,6 +30,7 @@ appRouter.use('/api', PhonesRouter.routes(), PhonesRouter.allowedMethods());
 appRouter.use('/api', LocationsRouter.routes(), LocationsRouter.allowedMethods());
 appRouter.use('/api', PersonsRouter.routes(), PersonsRouter.allowedMethods());
 appRouter.use('/sms', SMSRouter.routes(), SMSRouter.allowedMethods());
+appRouter.use(HealthRouter.routes(), HealthRouter.allowedMethods());
 
 app.use(cors());
 app.use(bodyParser());
