@@ -26,7 +26,7 @@ async function seedDB() {
       {
         'country': 'Ukraine',
         'city': 'Kharkiv',
-        'address':'23 Lane, 67',
+        'address':'Some street 9',
         'person_id': 1,
       }
     ]);
