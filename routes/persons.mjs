@@ -18,7 +18,7 @@ PersonsRouter.get('/persons', async ctx => {
     ctx.body = await getPersons(params, sorting);
 });
 
-PersonsRouter.get('/birthday-persons', async ctx => {
+PersonsRouter.get('/persons/birthday', async ctx => {
     ctx.body = await getBirthdayPersons();
 });
 
