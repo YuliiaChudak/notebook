@@ -1,0 +1,4 @@
+src/registerServiceWorker.js
+src/serviceWorker.js
+src/**/__tests__/**
+cypress/*

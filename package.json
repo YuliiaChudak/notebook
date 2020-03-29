@@ -5,17 +5,18 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "stop": "",
     "dev": "nodemon index.js",
     "db:init": "node -r @std/esm scripts/initDB.mjs",
     "db:seed": "node -r @std/esm scripts/seedDB.mjs",
     "db:destroy": "rm -rf ./db.sqlite",
-    "db:reset": "npm run db:destroy && npm run db:init",
-    "test:dev": "NOTEBOOK_db__connection__filename=./test-db.sqlite nodemon index.js",
-    "test:db:init": "NOTEBOOK_db__connection__filename=./test-db.sqlite node -r @std/esm scripts/initDB.mjs",
-    "test:db:seed": "NOTEBOOK_db__connection__filename=./test-db.sqlite node -r @std/esm scripts/seedDB.mjs",
-    "test:db:destroy": "rm -rf ./test-db.sqlite",
-    "test:db:reset": "npm run test:db:destroy && npm run test:db:init"
+    "db:reset": "npm run db:destroy && npm run db:init && npm run db:seed",
+    "lint": "eslint './**/*.{js,mjs}'",
+    "prettier:format": "prettier --write './**/*.{js,mjs}'",
+    "test:e2e:dev": "NOTEBOOK_db__connection__filename=./test-db.sqlite nodemon index.js",
+    "test:e2e:db:init": "NOTEBOOK_db__connection__filename=./test-db.sqlite node -r @std/esm scripts/initDB.mjs",
+    "test:e2e:db:seed": "NOTEBOOK_db__connection__filename=./test-db.sqlite node -r @std/esm scripts/seedDB.mjs",
+    "test:e2e:db:destroy": "rm -rf ./test-db.sqlite",
+    "test:e2e:db:reset": "npm run test:e2e:db:destroy && npm run test:e2e:db:init && test:e2e:db:destroy"
   },
   "repository": {
     "type": "git",
@@ -25,40 +26,6 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/JuliaChudak/notebook/issues"
-  },
-  "prettier": {
-    "singleQuote": true,
-    "trailingComma": "es5"
-  },
-  "eslintConfig": {
-    "extends": [
-      "airbnb-base",
-      "prettier"
-    ],
-    "rules": {
-      "import/extensions": [
-        "error",
-        "always",
-        {
-          "js": "never",
-          "jsx": "never",
-          "mjs": "never"
-        }
-      ]
-    },
-    "settings": {
-      "import/resolver": {
-        "node": {
-          "extensions": [
-            ".js",
-            ".mjs"
-          ]
-        }
-      }
-    },
-    "env": {
-      "node": true
-    }
   },
   "homepage": "https://github.com/JuliaChudak/notebook#readme",
   "devDependencies": {
