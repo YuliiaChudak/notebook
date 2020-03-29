@@ -7,8 +7,9 @@ const personSchema = Joi.object({
   birthday: Joi.string().required(),
   occupation: Joi.string().required(),
   is_deleted: Joi.boolean().optional(),
-  is_studying: Joi.boolean().optional(),
-  role_id: Joi.number().integer().required(),
+  role_id: Joi.number()
+    .integer()
+    .required(),
 });
 
 export default personSchema;

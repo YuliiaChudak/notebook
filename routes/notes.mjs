@@ -1,11 +1,6 @@
 import Router from 'koa-router';
 
-import {
-  createNote,
-  deleteNote,
-  getNoteByPersonId,
-  updateNote
-} from '../db/repositories/notes';
+import { createNote, deleteNote, getNoteByPersonId, updateNote } from '../db/repositories/notes';
 
 const NotesRouter = new Router();
 
@@ -19,13 +14,11 @@ NotesRouter.post('/notes', async ctx => {
   ctx.body = await createNote(ctx.request.body);
 });
 
-
 NotesRouter.delete('/notes/:id', async ctx => {
   const { id } = ctx.params;
 
   ctx.body = await deleteNote(id);
 });
-
 
 NotesRouter.put('/notes/:id', async ctx => {
   const { id } = ctx.params;

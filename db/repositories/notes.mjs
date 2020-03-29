@@ -8,49 +8,48 @@ export function createNote({ addresses, phones, ...notesData }) {
   const { error } = personSchema.validate(notesData);
 
   if (error) {
-    throw new ValidationError(error)
+    throw new ValidationError(error);
   }
 
   return db.transaction(t => {
-
     return db('person')
       .transacting(t)
       .insert({ ...notesData, created_at: now, updated_at: now })
       .then(([id]) => {
         const operations = [];
 
-        if(phones) {
+        if (phones) {
           const phoneRecords = phones.map(item => ({ phone: item, person_id: id }));
           operations.push(
             db('phone')
               .transacting(t)
-              .insert(phoneRecords)
-          )
+              .insert(phoneRecords),
+          );
         }
 
-        if(addresses) {
+        if (addresses) {
           const locationRecords = addresses.map(item => ({ ...item, person_id: id }));
           operations.push(
             db('location')
               .transacting(t)
-              .insert(locationRecords)
-          )
+              .insert(locationRecords),
+          );
         }
 
-         return Promise.all(operations);
+        return Promise.all(operations);
       })
       .then(t.commit)
-      .catch(t.rollback)
-  })
+      .catch(t.rollback);
+  });
 }
 
 export const getNoteByPersonId = id => {
-    if (!Number.isInteger(Number(id))) {
-        throw new ValidationError('ID parameter should be a number')
-    }
+  if (!Number.isInteger(Number(id))) {
+    throw new ValidationError('ID parameter should be a number');
+  }
 
-    return db.raw(`
-        select first_name, last_name, patronymic, birthday, occupation, is_studying, role_id,
+  return db.raw(`
+        select first_name, last_name, patronymic, birthday, occupation, role_id,
             ( select phone from phone where phone.person_id = person.id) phone,
             ( select city from location where location.person_id = person_id ) city,
             ( select address from location where location.person_id = person_id ) address,
@@ -59,12 +58,11 @@ export const getNoteByPersonId = id => {
     `);
 };
 
-export const deleteNote = (id) => {
-
-  return  db('person')
+export const deleteNote = id => {
+  return db('person')
     .whereNot('is_deleted', true)
-    .where({ 'id': id })
-    .update({ 'is_deleted': true });
+    .where({ id })
+    .update({ is_deleted: true });
 };
 
 export const updateNote = (id, { addresses, phones, ...data }) => {
@@ -80,38 +78,38 @@ export const updateNote = (id, { addresses, phones, ...data }) => {
 
   return db.transaction(t => {
     return db('person')
-        .transacting(t)
-        .where({'is_deleted': false, id})
-        .update({ ...data, updated_at: now })
-        .then(() => {
-          const operations = [];
+      .transacting(t)
+      .where({ is_deleted: false, id })
+      .update({ ...data, updated_at: now })
+      .then(() => {
+        const operations = [];
 
-          if (phones) {
-            const [ number ] = phones;
+        if (phones) {
+          const [number] = phones;
 
-            operations.push(
-                db('phone')
-                    .transacting(t)
-                    .where({ 'person_id': id })
-                    .update({ phone: number })
-            )
-          }
+          operations.push(
+            db('phone')
+              .transacting(t)
+              .where({ person_id: id })
+              .update({ phone: number }),
+          );
+        }
 
-          if (addresses) {
-            const [ location ] = addresses;
-            const { city, country, address } = location;
+        if (addresses) {
+          const [location] = addresses;
+          const { city, country, address } = location;
 
-            operations.push(
-                db('location')
-                    .transacting(t)
-                    .where({ 'person_id': id })
-                    .update({ city, country, address })
-            )
-          }
+          operations.push(
+            db('location')
+              .transacting(t)
+              .where({ person_id: id })
+              .update({ city, country, address }),
+          );
+        }
 
-          return Promise.all(operations);
-        })
-        .then(t.commit)
-        .catch(t.rollback)
+        return Promise.all(operations);
+      })
+      .then(t.commit)
+      .catch(t.rollback);
   });
 };

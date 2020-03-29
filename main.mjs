@@ -5,12 +5,12 @@ import bodyParser from 'koa-bodyparser';
 
 import config from './config';
 import NotesRouter from './routes/notes';
-import PhonesRouter from "./routes/phones";
-import RolesRouter from "./routes/roles";
-import LocationsRouter from "./routes/locations";
-import PersonsRouter from "./routes/persons";
-import SMSRouter from "./routes/sms";
-import HealthRouter from "./routes/health";
+import PhonesRouter from './routes/phones';
+import RolesRouter from './routes/roles';
+import LocationsRouter from './routes/locations';
+import PersonsRouter from './routes/persons';
+import SMSRouter from './routes/sms';
+import HealthRouter from './routes/health';
 
 const app = new Koa();
 const appRouter = new Router();

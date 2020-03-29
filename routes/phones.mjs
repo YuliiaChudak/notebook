@@ -1,5 +1,5 @@
 import Router from 'koa-router';
-import {getPhoneById} from "../db/repositories/phones";
+import { getPhoneById } from '../db/repositories/phones';
 
 const PhonesRouter = new Router();
 
